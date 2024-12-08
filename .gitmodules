@@ -1,0 +1,3 @@
+[submodule "james"]
+	path = james
+	url = https://github.com/mammalwithashell/aoc-2024
