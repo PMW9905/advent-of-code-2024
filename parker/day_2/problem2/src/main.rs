@@ -4,24 +4,6 @@ use std::env;
 const MAX_DIF: i32 = 3;
 
 fn is_level_valid(level: &Vec<i32>) -> bool {
-    if level.len() <= 1 {
-        return true;
-    }
-    if &level[0] == &level[1] || (&level[0] - &level[1]).abs() > MAX_DIF {
-        return false;
-    }
-
-    let should_increase = &level[0] < &level[1];
-
-    for i in 2..level.len() {
-        if &level[i - 1] == &level[i] || (&level[i - 1] - &level[i]).abs() > MAX_DIF {
-            return false;
-        }
-        let is_increasing = &level[i-1] < &level[i];
-        if is_increasing != should_increase {
-            return false;
-        }
-    }
 
     return true;
 }
