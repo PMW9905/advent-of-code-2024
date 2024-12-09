@@ -1,5 +1,6 @@
 use input_read_util::read_file_return_buffer;
 use std::env;
+use regex::Regex;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
@@ -20,23 +21,33 @@ fn main() {
         }
     };
 
-    for line in input {
+    let mul_regex = Regex::new(r"mul\([0-9]+,[0-9]+\)").unwrap();
+    let num_regex = Regex::new(r"[0-9]+").unwrap();
+
+    let mut sum_of_mul = 0; 
+
+    for line in input { 
+        for mul in mul_regex.find_iter(&line.as_str()) {
+            println!("{}", mul.as_str());
+            let mut num_iter = num_regex.find_iter(mul.as_str());
+            let num1: i32 = match num_iter.next() {
+                Some(num) => num.as_str().parse::<i32>().unwrap_or_default(),
+                None => {
+                    println!("Unable to get next next number in mul func");
+                    std::process::exit(1);
+                }
+            };
+            let num2: i32 = match num_iter.next() {
+                Some(num) => num.as_str().parse::<i32>().unwrap_or_default(),
+                None => {
+                    println!("Unable to get next next number in mul func");
+                    std::process::exit(1);
+                }
+            };
+
+           sum_of_mul += num1 * num2; 
+        }
     }
+
+    println!("{}", sum_of_mul);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
