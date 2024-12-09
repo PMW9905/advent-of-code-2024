@@ -33,7 +33,6 @@ fn main() {
 
     for line in input { 
         for mul in do_dont_mul_regex.find_iter(&line.as_str()) {
-            println!("{}", mul.as_str());
 
             if mul.as_str().len() == SIZE_OF_DO {
                 can_mul = true; 

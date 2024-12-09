@@ -28,7 +28,6 @@ fn main() {
 
     for line in input { 
         for mul in mul_regex.find_iter(&line.as_str()) {
-            println!("{}", mul.as_str());
             let mut num_iter = num_regex.find_iter(mul.as_str());
             let num1: i32 = match num_iter.next() {
                 Some(num) => num.as_str().parse::<i32>().unwrap_or_default(),
